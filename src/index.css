@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  position: relative;
+  line-height: 1.7;
+}
+
+/* Colorful theme styles */
+body.colorful-theme {
+  background: linear-gradient(135deg, #181a1b 0%, #232946 100%);
+  color: #e0e0e0;
+}
+body.colorful-theme::after {
+  content: "{ } [ ] ( ) < />";
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  font-size: 3rem;
+  color: #22d3ee;
+  opacity: 0.07;
+  font-family: "Fira Mono", monospace;
+  pointer-events: none;
+  z-index: 0;
+}
+body.colorful-theme h1 {
+  color: #22d3ee !important;
+}
+body.colorful-theme h2 {
+  color: #f59e42 !important;
+}
+body.colorful-theme h3 {
+  color: #10b981 !important;
+}
+body.colorful-theme code,
+body.colorful-theme pre {
+  background: #232946;
+  color: #fde047;
+  border-radius: 8px;
+  font-family: "Fira Mono", monospace;
+  padding: 0.5em 1em;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px #0002;
+  line-height: 1.6;
+}
+body.colorful-theme .section {
+  border: 2px solid #22d3ee;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px #0006;
+  background: rgba(35, 41, 70, 0.97);
+  margin-bottom: 2rem;
+  padding: 1.7rem;
+  position: relative;
+}
+body.colorful-theme .section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #22d3ee 0%,
+    #f59e42 33%,
+    #10b981 66%,
+    #fde047 100%
+  );
+  border-radius: 3px 3px 0 0;
+  opacity: 0.8;
+}
+
+/* Modern scrollbar for colorful theme */
+body.colorful-theme ::-webkit-scrollbar {
+  width: 10px;
+  background: #232946;
+}
+body.colorful-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    #22d3ee 0%,
+    #f59e42 33%,
+    #10b981 66%,
+    #fde047 100%
+  );
+  border-radius: 5px;
+}
