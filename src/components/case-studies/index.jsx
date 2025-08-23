@@ -121,14 +121,4 @@ const caseStudies = {
   RateLimiter: RateLimiter,
 };
 
-caseStudyList.forEach((name) => {
-  if (!caseStudies[name]) {
-    caseStudies[name] = () => (
-      <CaseStudyTemplate
-        title={`Design ${name.replace(/([A-Z])/g, " $1").trim()}`}
-      />
-    );
-  }
-});
-
 export default caseStudies;

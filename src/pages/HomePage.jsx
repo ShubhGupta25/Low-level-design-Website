@@ -214,6 +214,7 @@ const CASE_STUDY_GROUPS = {
     "Meeting Scheduler",
   ],
   Miscellaneous: ["Notify-Me Button", "Pizza Billing System"],
+  Others: ["CricBuzz", "Hotel Booking System", "Library Management System"],
 };
 
 const normalize = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, "");

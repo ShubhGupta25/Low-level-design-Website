@@ -75,16 +75,4 @@ patterns.TemplateMethodPattern = TemplateMethodPattern;
 patterns.VisitorPattern = VisitorPattern;
 patterns.AbstractFactoryPattern = AbstractFactoryPattern;
 
-patternList.forEach((name) => {
-  const componentName = name.replace(/\s+/g, "") + "Pattern";
-  if (!patterns[componentName]) {
-    patterns[componentName] = () => (
-      <PatternTemplate
-        title={`${name} Pattern`}
-        subtitle="An interactive guide."
-      />
-    );
-  }
-});
-
 export default patterns;

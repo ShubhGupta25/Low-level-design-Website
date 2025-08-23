@@ -23,19 +23,7 @@ export const caseStudies = createRoutes(CaseStudyComponents, "case-studies");
 const App = () => {
   const navigate = useNavigate();
 
-  const [isColorfulTheme, setIsColorfulTheme] = useState(() => {
-    const stored = localStorage.getItem("colorfulTheme");
-    return stored === "true";
-  });
-
-  useEffect(() => {
-    if (isColorfulTheme) {
-      document.body.classList.add("colorful-theme");
-    } else {
-      document.body.classList.remove("colorful-theme");
-    }
-    localStorage.setItem("colorfulTheme", isColorfulTheme);
-  }, [isColorfulTheme]);
+  document.body.classList.add("colorful-theme");
 
   // Shared button style for Back and Theme
   const buttonStyle = {
@@ -71,17 +59,6 @@ const App = () => {
           {...hoverEffect}
         >
           ← Back
-        </button>
-      </div>
-
-      {/* Theme Button - Top Right (same design as Back) */}
-      <div style={{ position: "fixed", top: 20, right: 30, zIndex: 1000 }}>
-        <button
-          onClick={() => setIsColorfulTheme((t) => !t)}
-          style={buttonStyle}
-          {...hoverEffect}
-        >
-          {isColorfulTheme ? "🌈 Theme" : "🌑 Theme"}
         </button>
       </div>
 
