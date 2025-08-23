@@ -271,6 +271,51 @@ const HomePage = () => {
         </div>
       </div>
 
+      <footer
+        style={{
+          background: "#111",
+          padding: "2rem 1rem",
+          boxShadow: "0 -2px 10px rgba(0,0,0,0.5)",
+          color: "#fff",
+          textAlign: "center",
+          marginTop: "2rem",
+          borderTop: "1px solid #333",
+          fontSize: "0.95rem",
+        }}
+      >
+        <div style={{ marginBottom: "0.5rem" }}>
+          Author: <strong>Shubh Gupta</strong> |{" "}
+          <a
+            href="https://github.com/ShubhGupta25"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#5DADE2",
+              textDecoration: "none",
+              margin: "0 0.5rem",
+            }}
+          >
+            GitHub
+          </a>{" "}
+          |{" "}
+          <a
+            href="https://www.linkedin.com/in/shubh-guptaa/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#5DADE2",
+              textDecoration: "none",
+              margin: "0 0.5rem",
+            }}
+          >
+            LinkedIn
+          </a>
+        </div>
+        <div>
+          © {new Date().getFullYear()} Shubh Gupta. All Rights Reserved.
+        </div>
+      </footer>
+
       <style>
         {`
           .hover-item:hover { background: #222; transform: translateX(5px); transition: all 0.2s; }

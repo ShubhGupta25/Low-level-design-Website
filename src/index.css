@@ -78,8 +78,9 @@ body.colorful-theme .section::before {
 
 /* Modern scrollbar for colorful theme */
 body.colorful-theme ::-webkit-scrollbar {
-  width: 10px;
-  background: #232946;
+  width: 0px;
+  background: transparent;
+  color: transparent;
 }
 body.colorful-theme ::-webkit-scrollbar-thumb {
   background: linear-gradient(
@@ -92,5 +93,5 @@ body.colorful-theme ::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 * {
-  scrollbar-width: 0px; /* For Firefox */ 
+  scrollbar-width: 0px; /* For Firefox */
 }
