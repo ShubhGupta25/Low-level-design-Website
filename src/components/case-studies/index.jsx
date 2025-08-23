@@ -22,6 +22,22 @@ import CricBuzz from "./studies/CricBuzz";
 import AirlineManagementSystem from "./studies/AirlineManagementSystem";
 import Amazon from "./studies/Amazon";
 import CarBookingService from "./studies/CarBookingService";
+import RateLimiter from "./studies/RateLimiter";
+import RestaurantManagementSystem from "./studies/RestaurantManagementSystem";
+import CommunityDiscussionPlatform from "./studies/CommunityDiscussionPlatform";
+import PaymentSystem from "./studies/PaymentSystem";
+import CalendarApplication from "./studies/CalendarApplication";
+import StockExchangeSystem from "./studies/StockExchangeSystem";
+import LearningManagementSystem from "./studies/LearningManagementSystem";
+import LinkedIn from "./studies/LinkedIn";
+import CacheMechanism from "./studies/CacheMechanism";
+import InventoryManagementSystem from "./studies/InventoryManagementSystem";
+import OnlineVotingSystem from "./studies/OnlineVotingSystem";
+import MeetingScheduler from "./studies/MeetingScheduler";
+import SplitwiseSimplifyAlgorithm from "./studies/SplitwiseSimplifyAlgorithm";
+import Splitwise from "./studies/Splitwise";
+import FileSystem from "./studies/FileSystem";
+import LoggingSystem from "./studies/LoggingSystem";
 
 const caseStudyList = [
   "NotifyMeButton",
@@ -64,31 +80,46 @@ const caseStudyList = [
   "RateLimiter",
 ];
 
-const caseStudies = {};
-
-caseStudies.NotifyMeButton = NotifyMeButton;
-caseStudies.PizzaBillingSystem = PizzaBillingSystem;
-caseStudies.ParkingLot = ParkingLot;
-caseStudies.SnakenLadder = SnakenLadder;
-caseStudies.ElevatorSystem = ElevatorSystem;
-caseStudies.CarRentalSystem = CarRentalSystem;
-caseStudies.TrueCaller = TrueCaller;
-caseStudies.HotelBookingSystem = HotelBookingSystem;
-caseStudies.ATMSystem = ATMSystem;
-caseStudies.TrueCaller = TrueCaller;
-caseStudies.VendingMachine = VendingMachine;
-caseStudies.TrafficLightSystem = TrafficLightSystem;
-caseStudies.OnlineFoodDeliverySystem = OnlineFoodDeliverySystem;
-caseStudies.ChatMessagingApp = ChatMessagingApp;
-caseStudies.BookMyShow = BookMyShow;
-caseStudies.LibraryManagementSystem = LibraryManagementSystem;
-caseStudies.ChessGame = ChessGame;
-caseStudies.TicTacToe = TicTacToe;
-caseStudies.BowlingAlleyMachine = BowlingAlleyMachine;
-caseStudies.CricBuzz = CricBuzz;
-caseStudies.AirlineManagementSystem = AirlineManagementSystem;
-caseStudies.Amazon = Amazon;
-caseStudies.CarBookingService = CarBookingService;
+const caseStudies = {
+  NotifyMeButton: NotifyMeButton,
+  PizzaBillingSystem: PizzaBillingSystem,
+  ParkingLot: ParkingLot,
+  SnakenLadder: SnakenLadder,
+  ElevatorSystem: ElevatorSystem,
+  CarRentalSystem: CarRentalSystem,
+  LoggingSystem: LoggingSystem,
+  TicTacToe: TicTacToe,
+  BookMyShow: BookMyShow,
+  VendingMachine: VendingMachine,
+  ATM: ATMSystem,
+  ChessGame: ChessGame,
+  FileSystem: FileSystem,
+  Splitwise: Splitwise,
+  SplitwiseSimplifyAlgorithm: SplitwiseSimplifyAlgorithm,
+  CricBuzz: CricBuzz,
+  TrueCaller: TrueCaller,
+  CarBookingService: CarBookingService,
+  HotelBookingSystem: HotelBookingSystem,
+  LibraryManagementSystem: LibraryManagementSystem,
+  TrafficLightSystem: TrafficLightSystem,
+  MeetingScheduler: MeetingScheduler,
+  OnlineVotingSystem: OnlineVotingSystem,
+  InventoryManagementSystem: InventoryManagementSystem,
+  CacheMechanism: CacheMechanism,
+  LinkedIn: LinkedIn,
+  Amazon: Amazon,
+  AirlineManagementSystem: AirlineManagementSystem,
+  StockExchangeSystem: StockExchangeSystem,
+  LearningManagementSystem: LearningManagementSystem,
+  CalendarApplication: CalendarApplication,
+  PaymentSystem: PaymentSystem,
+  ChatBasedSystem: ChatMessagingApp,
+  FoodDeliveryApp: OnlineFoodDeliverySystem,
+  CommunityDiscussionPlatform: CommunityDiscussionPlatform,
+  RestaurantManagementSystem: RestaurantManagementSystem,
+  BowlingAlleyMachine: BowlingAlleyMachine,
+  RateLimiter: RateLimiter,
+};
 
 caseStudyList.forEach((name) => {
   if (!caseStudies[name]) {

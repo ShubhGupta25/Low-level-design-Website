@@ -1,3 +1,4 @@
+import { a } from "framer-motion/client";
 import React from "react";
 
 const styles = {
@@ -37,11 +38,23 @@ const styles = {
   },
 };
 
-const getStyle = (index) => {
-  if (index === 5) {
+const getStyle = (content, index) => {
+  if (
+    content[index].title === "Low-Level Pattern(s) Used & Why" ||
+    content[index].title === "Advantages & Disadvantages"
+  ) {
+    if (
+      index + 1 === content.length &&
+      content[index].title === "Low-Level Pattern(s) Used & Why"
+    ) {
+      return {
+        ...styles.column,
+        width: "95%", // full width for last item if it's the first title
+      };
+    }
     return {
       ...styles.column,
-      width: "70%", // added width for index 0 or 3
+      width: "45%", // added width for index 0 or 3
     };
   }
   return styles.column; // default style for other indices
@@ -52,7 +65,7 @@ const ExplanationSection = ({ content }) => {
     <section style={styles.section}>
       <div style={styles.layout}>
         {content.map((col, index) => (
-          <div key={index} style={getStyle(index)}>
+          <div key={index} style={getStyle(content, index)}>
             <h2 style={styles.title}>{col.title}</h2>
             <div style={styles.text}>{col.content}</div>
           </div>

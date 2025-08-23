@@ -1,6 +1,9 @@
 import React from "react";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import VisualizerContainer from "../../shared/VisualizerContainer";
 import ExplanationSection from "../../shared/ExplanationSection";
+import { BowlingAlleyMachine as data } from "../../shared/database";
 
 const styles = {
   visualizationBlock: {
@@ -89,105 +92,27 @@ const styles = {
   },
 };
 
-/* -------------------------
-   Bowling Alley Machine
--------------------------- */
-const bowlingContent = [
-  {
-    title: "Low-Level Pattern(s) Used & Why",
-    content: (
-      <>
-        <p>
-          <b>Patterns Used:</b> <br />
-          <span style={{ color: "#FFD600" }}>State</span> (for frame/game
-          progress), <span style={{ color: "#00BFFF" }}>Strategy</span> (for
-          scoring logic), <span style={{ color: "#A569BD" }}>Observer</span> (to
-          update scoreboard).
-        </p>
-        <ul>
-          <li>
-            <b>State:</b> Manage frames, strikes, spares.
-          </li>
-          <li>
-            <b>Strategy:</b> Support different scoring variants.
-          </li>
-          <li>
-            <b>Observer:</b> Notify scoreboard and players in real time.
-          </li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    title: "Advantages & Disadvantages",
-    content: (
-      <>
-        <h4>Advantages ✅</h4>
-        <ul>
-          <li>Handles multiple players and score updates cleanly.</li>
-          <li>Supports rule extensions easily.</li>
-        </ul>
-        <h4>Disadvantages ❌</h4>
-        <ul>
-          <li>Scoring strategies can get complex.</li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    title: "Design Visualization",
-    content: (
-      <div style={styles.visualizationBlock}>
-        <div style={styles.lane}>
-          {[...Array(10)].map((_, i) => (
-            <div key={i} style={styles.pin}></div>
-          ))}
-        </div>
-        <div style={{ fontSize: "1.1rem", color: "#FFD600" }}>
-          State → Strategy → Observer
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Code Example",
-    content: (
-      <pre
-        style={{
-          background: "#181a1b",
-          color: "#FFD600",
-          fontSize: "0.95rem",
-          borderRadius: 12,
-          padding: "1.2rem",
-          marginTop: 16,
-        }}
-      >
-        {`// State Pattern
-class Frame {
-  setScore(pins) { /* ... */ }
-}
-
-// Strategy Pattern
-class ScoringStrategy {
-  calculateScore(frames) { /* ... */ }
-}
-
-// Observer Pattern
-class Scoreboard {
-  subscribe(player) { /* ... */ }
-  notifyAll() { /* ... */ }
-}`}
-      </pre>
-    ),
-  },
-];
-
 const BowlingAlleyMachine = () => (
   <VisualizerContainer
-    title="Bowling Alley Machine"
+    title={data.title}
     subtitle="A low-level system design exploration."
   >
-    <ExplanationSection content={bowlingContent} />
+    {data.visualization}
+    <div style={{ marginTop: "2rem" }}>
+      <SyntaxHighlighter
+        language="javascript"
+        style={githubGist}
+        customStyle={{
+          background: "transparent",
+          color: "smokewhite",
+          fontSize: "0.9rem",
+          borderRadius: "8px",
+        }}
+      >
+        {data.code}
+      </SyntaxHighlighter>
+    </div>
+    <ExplanationSection content={data.explanations} />
   </VisualizerContainer>
 );
 
