@@ -270,61 +270,100 @@ const HomePage = () => {
           ))}{" "}
         </div>
       </div>
-
       <footer
+        className="colorful-footer"
         style={{
-          background: "#111",
-          padding: "2rem 1rem",
-          boxShadow: "0 -2px 10px rgba(0,0,0,0.5)",
-          color: "#fff",
+          background: "rgba(35, 41, 70, 0.97)",
+          padding: "3rem 1rem",
+          marginTop: "3rem",
+          borderTop: "6px solid",
+          borderImage:
+            "linear-gradient(90deg, #22d3ee, #f59e42, #10b981, #fde047) 1",
+          fontFamily: "'Fira Mono', monospace",
+          color: "#e0e0e0",
           textAlign: "center",
-          marginTop: "2rem",
-          borderTop: "1px solid #333",
-          fontSize: "0.95rem",
+          position: "relative",
+          zIndex: 1,
         }}
       >
-        <div style={{ marginBottom: "0.5rem" }}>
-          Author: <strong>Shubh Gupta</strong> |{" "}
-          <a
-            href="https://github.com/ShubhGupta25"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          {/* Author & Social Links */}
+          <div
             style={{
-              color: "#5DADE2",
-              textDecoration: "none",
-              margin: "0 0.5rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              alignItems: "center",
             }}
           >
-            GitHub
-          </a>{" "}
-          |{" "}
-          <a
-            href="https://www.linkedin.com/in/shubh-guptaa/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "#5DADE2",
-              textDecoration: "none",
-              margin: "0 0.5rem",
-            }}
-          >
-            LinkedIn
-          </a>
-        </div>
-        <div>
-          © {new Date().getFullYear()} Shubh Gupta. All Rights Reserved.
-        </div>
-      </footer>
+            <span style={{ fontSize: "1.2rem", fontWeight: "700" }}>
+              👨‍💻 Shubh Gupta
+            </span>
+            <div style={{ display: "flex", gap: "1.5rem" }}>
+              <a
+                href="https://github.com/ShubhGupta25"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#22d3ee",
+                  textDecoration: "none",
+                  transition: "all 0.3s",
+                }}
+                className="footer-link"
+              >
+                🐱 GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/shubh-guptaa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#f59e42",
+                  textDecoration: "none",
+                  transition: "all 0.3s",
+                }}
+                className="footer-link"
+              >
+                💼 LinkedIn
+              </a>
+            </div>
+          </div>
 
-      <style>
-        {`
-          .hover-item:hover { background: #222; transform: translateX(5px); transition: all 0.2s; }
-          .hover-item:hover span { filter: drop-shadow(0 0 6px #FDE047); }
-          ul::-webkit-scrollbar { width: 6px; }
-          ul::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
-          ul { scrollbar-width: thin; scrollbar-color: #444 transparent; }
-        `}
-      </style>
+          {/* Copyright */}
+          <div
+            style={{
+              marginTop: "2rem",
+              fontSize: "0.9rem",
+              color: "#fde047",
+            }}
+          >
+            © {new Date().getFullYear()} Shubh Gupta. All Rights Reserved.
+          </div>
+
+          {/* Accent Glow Line */}
+          <div
+            style={{
+              width: "80px",
+              height: "4px",
+              margin: "1rem auto 0",
+              borderRadius: "2px",
+              background:
+                "linear-gradient(90deg, #22d3ee, #f59e42, #10b981, #fde047)",
+              boxShadow:
+                "0 0 12px #22d3eeaa, 0 0 12px #f59e42aa, 0 0 12px #10b981aa, 0 0 12px #fde047aa",
+            }}
+          ></div>
+        </div>
+
+        <style>
+          {`
+      .footer-link:hover {
+        text-shadow: 0 0 6px #fde047;
+        transform: translateY(-2px);
+      }
+    `}
+        </style>
+      </footer>
     </div>
   );
 };
