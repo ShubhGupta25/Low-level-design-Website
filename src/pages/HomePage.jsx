@@ -363,6 +363,34 @@ const HomePage = () => {
       }
     `}
         </style>
+
+        <style>
+          {`
+    .hover-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hover-item:hover {
+      background: #333;
+      transform: translateX(5px);
+    }
+
+    .hover-item span {
+      transition: all 0.3s ease;
+    }
+
+    .hover-item:hover span {
+       filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600); transition: filter 0.3s;
+      transform: scale(1.2);
+    }
+  `}
+        </style>
       </footer>
     </div>
   );
