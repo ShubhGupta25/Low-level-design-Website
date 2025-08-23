@@ -38,7 +38,7 @@ const patternList = [
   "Builder",
   "Prototype",
   "Bridge",
-  "Façade",
+  "Facade",
   "Flyweight",
   "Command",
   "Interpreter",

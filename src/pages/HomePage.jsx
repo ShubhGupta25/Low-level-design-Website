@@ -1,54 +1,134 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { patterns, caseStudies } from "../App";
 
+// Icons for case studies & patterns
+const icons = {
+  // Case studies
+  NotifyMeButton: "🔔",
+  PizzaBillingSystem: "🍕",
+  ParkingLot: "🅿️",
+  SnakenLadder: "🎲",
+  ElevatorSystem: "🛗",
+  CarRentalSystem: "🚗",
+  LoggingSystem: "📝",
+  TicTacToe: "❌⭕",
+  BookMyShow: "🎬",
+  VendingMachine: "🥤",
+  ATM: "🏧",
+  ChessGame: "♟️",
+  FileSystem: "📁",
+  Splitwise: "💸",
+  TrueCaller: "📞",
+  HotelBookingSystem: "🏨",
+  LibraryManagementSystem: "📚",
+  TrafficLightSystem: "🚦",
+  CarBookingService: "🚙",
+  AirlineManagementSystem: "✈️",
+  Amazon: "🛒",
+  RateLimiter: "⏱️",
+  RestaurantManagementSystem: "🍽️",
+  CommunityDiscussionPlatform: "💬",
+  CalendarApplication: "📅",
+  PaymentSystem: "💰",
+  ChatBasedSystem: "💬",
+  FoodDeliveryApp: "🍱",
+  BowlingAlleyMachine: "🎳",
+  LearningManagementSystem: "🎓",
+  StockExchangeSystem: "📈",
+  InventoryManagementSystem: "📦",
+  OnlineVotingSystem: "🗳️",
+  MeetingScheduler: "📌",
+  CacheMechanism: "⚡",
+  LinkedIn: "💼",
+
+  // Patterns
+  DecoratorPattern: "🎨",
+  ChainOfResponsibilityPattern: "⛓️",
+  ObserverPattern: "👀",
+  FactoryPattern: "🏭",
+  StatePattern: "🔄",
+  SingletonPattern: "🔒",
+  BuilderPattern: "🧱",
+  CompositePattern: "🧩",
+  AdapterPattern: "🔌",
+  FacadePattern: "🏛️",
+  ProxyPattern: "🛡️",
+  ChainPattern: "⛓️",
+  CommandPattern: "🎯",
+  NullObjectPattern: "🚫",
+  BridgePattern: "🌉",
+  PrototypePattern: "🧬",
+  FlyweightPattern: "🪶",
+  InterpreterPattern: "📖",
+  IteratorPattern: "🔁",
+  MediatorPattern: "🤝",
+  MementoPattern: "🗂️",
+  TemplatePattern: "📐",
+  VisitorPattern: "👤",
+  AbstractFactoryPattern: "🏭",
+};
+
+// Styles
 const styles = {
-  homeContainer: {
+  container: {
     maxWidth: "1200px",
     margin: "2rem auto",
     padding: "2rem",
     fontFamily: "'Inter', sans-serif",
+    color: "#fff",
   },
   header: {
     textAlign: "center",
     fontSize: "3rem",
-    color: "#fff",
-    marginBottom: "3rem",
-  },
-  listsContainer: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "3rem",
-  },
-  list: {
-    listStyle: "none",
-    padding: "1.5rem",
-    margin: 0,
-    backgroundColor: "#1A1A1A",
-    borderRadius: "12px",
-    border: "1px solid #333",
+    marginBottom: "2rem",
   },
   listTitle: {
     fontSize: "1.8rem",
-    color: "#A569BD",
-    marginBottom: "1.5rem",
+    marginBottom: "1rem",
     borderBottom: "1px solid #444",
-    paddingBottom: "1rem",
+    paddingBottom: "0.5rem",
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+  },
+  list: {
+    listStyle: "none",
+    padding: "1rem",
+    margin: "0 0 2rem 0",
+    background: "#1A1A1A",
+    borderRadius: "10px",
+    maxHeight: "350px",
+    overflowY: "auto",
   },
   listItem: {
-    marginBottom: "0.5rem",
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    padding: "6px 8px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    transition: "all 0.2s",
   },
   link: {
-    textDecoration: "none",
     color: "#5DADE2",
-    fontSize: "1.1rem",
-    transition: "color 0.2s ease-in-out",
+    textDecoration: "none",
+    flex: 1,
+  },
+  icon: {
+    fontSize: "1.4rem",
+  },
+  innercontainer: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "2rem",
   },
 };
 
+// Grouping Functions
 const CREATIONAL = [
   "Factory",
-  "Abstract Factory",
+  "AbstractFactory",
   "Singleton",
   "Builder",
   "Prototype",
@@ -64,9 +144,9 @@ const STRUCTURAL = [
 ];
 const BEHAVIORAL = [
   "Observer",
-  "Chain Of Responsibility",
+  "ChainOfResponsibility",
   "Command",
-  "Null Object",
+  "NullObject",
   "State",
   "Interpreter",
   "Iterator",
@@ -76,11 +156,24 @@ const BEHAVIORAL = [
   "Visitor",
 ];
 
+const groupPatterns = (patterns) => {
+  const groups = { Creational: [], Structural: [], Behavioral: [] };
+  patterns.forEach((p) => {
+    const name = p.name.replace(/ Pattern$/, "").trim();
+    if (CREATIONAL.some((c) => name.includes(c))) groups.Creational.push(p);
+    else if (STRUCTURAL.some((s) => name.includes(s)))
+      groups.Structural.push(p);
+    else if (BEHAVIORAL.some((b) => name.includes(b)))
+      groups.Behavioral.push(p);
+  });
+  return groups;
+};
+
 const CASE_STUDY_GROUPS = {
   Games: [
     "Snake n Ladder",
     "Tic-Tac-Toe",
-    "Chess game",
+    "Chess Game",
     "Bowling Alley Machine",
   ],
   "Booking & Rental": [
@@ -89,7 +182,7 @@ const CASE_STUDY_GROUPS = {
     "Hotel Booking System",
     "BookMyShow",
     "Restaurant Management System",
-    "Food delivery app",
+    "Food Delivery App",
     "Calendar Application",
   ],
   "Finance & Payment": [
@@ -104,7 +197,7 @@ const CASE_STUDY_GROUPS = {
   ],
   "Social & Community": [
     "LinkedIn",
-    "Chat based system",
+    "Chat Based System",
     "Community Discussion Platform",
     "Online Voting System",
     "True Caller",
@@ -123,123 +216,69 @@ const CASE_STUDY_GROUPS = {
   Miscellaneous: ["Notify-Me Button", "Pizza Billing System"],
 };
 
-const CASE_STUDY_ICONS = {
-  Games: "🎮",
-  "Booking & Rental": "🚗",
-  "Finance & Payment": "💸",
-  "Social & Community": "👥",
-  "System & Infra": "🖥️",
-  Miscellaneous: "🧩",
-  Other: "📁",
-};
-
 const normalize = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, "");
+
 const groupCaseStudies = (caseStudies) => {
   const groups = {};
-  const allNames = Object.values(CASE_STUDY_GROUPS).flat();
   Object.entries(CASE_STUDY_GROUPS).forEach(([group, names]) => {
-    groups[group] = caseStudies
-      .filter((cs) => names.some((n) => normalize(cs.name) === normalize(n)))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  // Add uncategorized case studies
-  const categorizedPaths = Object.values(groups)
-    .flat()
-    .map((cs) => cs.path);
-  const uncategorized = caseStudies.filter(
-    (cs) => !categorizedPaths.includes(cs.path)
-  );
-  if (uncategorized.length > 0) {
-    groups["Other"] = uncategorized.sort((a, b) =>
-      a.name.localeCompare(b.name)
+    groups[group] = caseStudies.filter((cs) =>
+      names.some((n) => normalize(n) === normalize(cs.name))
     );
-  }
-  return groups;
-};
-
-const groupPatterns = (patterns) => {
-  const groups = { Creational: [], Structural: [], Behavioral: [] };
-  patterns.forEach((p) => {
-    const name = p.name
-      .replace(/ Pattern$/, "")
-      .replace(/-/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-    if (CREATIONAL.some((c) => name.toLowerCase().includes(c.toLowerCase())))
-      groups.Creational.push(p);
-    else if (
-      STRUCTURAL.some((s) => name.toLowerCase().includes(s.toLowerCase()))
-    )
-      groups.Structural.push(p);
-    else if (
-      BEHAVIORAL.some((b) => name.toLowerCase().includes(b.toLowerCase()))
-    )
-      groups.Behavioral.push(p);
   });
-  groups.Creational.sort((a, b) => a.name.localeCompare(b.name));
-  groups.Structural.sort((a, b) => a.name.localeCompare(b.name));
-  groups.Behavioral.sort((a, b) => a.name.localeCompare(b.name));
   return groups;
 };
 
+// Component
 const HomePage = () => {
-  const grouped = groupPatterns(patterns);
-  const caseGrouped = groupCaseStudies(caseStudies);
+  const groupedPatterns = groupPatterns(patterns);
+  const groupedStudies = groupCaseStudies(caseStudies);
+
+  const renderItems = (items, isPattern = false) =>
+    items.map((item) => (
+      <li key={item.path} style={styles.listItem} className="hover-item">
+        <Link to={item.path} style={styles.link}>
+          <span style={styles.icon}>{icons[item.name] || "📌"}</span>
+          {item.name}
+        </Link>
+      </li>
+    ));
+
   return (
-    <div style={styles.homeContainer}>
-      <h1 style={styles.header}>React Design Patterns & Case Studies</h1>
-      <div style={styles.listsContainer}>
+    <div style={styles.container}>
+      <h1 style={styles.header}>Low Level Design Patterns & Case Studies</h1>
+      <div style={styles.innercontainer}>
         <div>
           <h2 style={styles.listTitle}>📜 Creational Patterns</h2>
-          <ul style={styles.list}>
-            {grouped.Creational.map((p) => (
-              <li key={p.path} style={styles.listItem}>
-                <Link to={p.path} style={styles.link}>
-                  {p.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ul style={styles.list}>{renderItems(groupedPatterns.Creational)}</ul>
+
           <h2 style={styles.listTitle}>🏗️ Structural Patterns</h2>
-          <ul style={styles.list}>
-            {grouped.Structural.map((p) => (
-              <li key={p.path} style={styles.listItem}>
-                <Link to={p.path} style={styles.link}>
-                  {p.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ul style={styles.list}>{renderItems(groupedPatterns.Structural)}</ul>
+
           <h2 style={styles.listTitle}>🔄 Behavioral Patterns</h2>
-          <ul style={styles.list}>
-            {grouped.Behavioral.map((p) => (
-              <li key={p.path} style={styles.listItem}>
-                <Link to={p.path} style={styles.link}>
-                  {p.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ul style={styles.list}>{renderItems(groupedPatterns.Behavioral)}</ul>
         </div>
         <div>
-          {Object.entries(caseGrouped).map(([group, studies]) => (
-            <React.Fragment key={group}>
+          {" "}
+          {Object.entries(groupedStudies).map(([group, studies]) => (
+            <div key={group}>
               <h2 style={styles.listTitle}>
-                {CASE_STUDY_ICONS[group] || "📁"} {group} Case Studies
+                {icons[group] || "📁"} {group} Case Studies
               </h2>
-              <ul style={styles.list}>
-                {studies.map((cs) => (
-                  <li key={cs.path} style={styles.listItem}>
-                    <Link to={cs.path} style={styles.link}>
-                      {cs.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </React.Fragment>
-          ))}
+              <ul style={styles.list}>{renderItems(studies)}</ul>
+            </div>
+          ))}{" "}
         </div>
       </div>
+
+      <style>
+        {`
+          .hover-item:hover { background: #222; transform: translateX(5px); transition: all 0.2s; }
+          .hover-item:hover span { filter: drop-shadow(0 0 6px #FDE047); }
+          ul::-webkit-scrollbar { width: 6px; }
+          ul::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+          ul { scrollbar-width: thin; scrollbar-color: #444 transparent; }
+        `}
+      </style>
     </div>
   );
 };

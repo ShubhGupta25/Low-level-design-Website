@@ -91,3 +91,6 @@ body.colorful-theme ::-webkit-scrollbar-thumb {
   );
   border-radius: 5px;
 }
+* {
+  scrollbar-width: 0px; /* For Firefox */ 
+}

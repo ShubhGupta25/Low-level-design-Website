@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PatternComponents from "./components/patterns";
 import CaseStudyComponents from "./components/case-studies";
+import ScrollToTop from "./components/shared/ScrollToTop";
+import Sidebar from "./components/shared/Sidebar";
 
 const createRoutes = (componentObject, prefix) => {
   return Object.entries(componentObject).map(([name, Component]) => {
-    // Route: /case-studies/car-rental-system
-    // Key: CarRentalSystem
-    // Map kebab-case route to PascalCase key
     const routeName = name
       .replace(/([A-Z])/g, "-$1")
       .toLowerCase()
@@ -22,7 +21,8 @@ export const patterns = createRoutes(PatternComponents, "patterns");
 export const caseStudies = createRoutes(CaseStudyComponents, "case-studies");
 
 const App = () => {
-  // Read theme from localStorage or default to false
+  const navigate = useNavigate();
+
   const [isColorfulTheme, setIsColorfulTheme] = useState(() => {
     const stored = localStorage.getItem("colorfulTheme");
     return stored === "true";
@@ -37,29 +37,79 @@ const App = () => {
     localStorage.setItem("colorfulTheme", isColorfulTheme);
   }, [isColorfulTheme]);
 
+  // Shared button style for Back and Theme
+  const buttonStyle = {
+    backgroundColor: "#000",
+    color: "#fff",
+    border: "none",
+    borderRadius: "12px",
+    padding: "0.6rem 1.4rem",
+    fontWeight: 600,
+    fontSize: "1rem",
+    cursor: "pointer",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    transition: "all 0.2s",
+  };
+
+  // Hover and press effects
+  const hoverEffect = {
+    onMouseEnter: (e) =>
+      (e.currentTarget.style.boxShadow = "0 6px 18px rgba(0,0,0,0.6)"),
+    onMouseLeave: (e) =>
+      (e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.4)"),
+    onMouseDown: (e) => (e.currentTarget.style.transform = "scale(0.95)"),
+    onMouseUp: (e) => (e.currentTarget.style.transform = "scale(1)"),
+  };
+
   return (
     <>
+      {/* Back Button - Top Left */}
+      <div style={{ position: "fixed", top: 20, left: 80, zIndex: 1000 }}>
+        <button
+          onClick={() => navigate(-1)}
+          style={buttonStyle}
+          {...hoverEffect}
+        >
+          ← Back
+        </button>
+      </div>
+
+      {/* Theme Button - Top Right (same design as Back) */}
       <div style={{ position: "fixed", top: 20, right: 30, zIndex: 1000 }}>
         <button
           onClick={() => setIsColorfulTheme((t) => !t)}
-          style={{
-            background: isColorfulTheme
-              ? "linear-gradient(90deg, #22D3EE 0%, #F59E42 33%, #10B981 66%, #FDE047 100%)"
-              : "#222",
-            color: isColorfulTheme ? "#181a1b" : "#e0e0e0",
-            border: "none",
-            borderRadius: "20px",
-            padding: "0.6rem 1.4rem",
-            fontWeight: 600,
-            fontSize: "1.1rem",
-            cursor: "pointer",
-            boxShadow: isColorfulTheme ? "0 2px 8px #0004" : "0 1px 4px #0002",
-            transition: "all 0.2s",
-          }}
+          style={buttonStyle}
+          {...hoverEffect}
         >
-          {isColorfulTheme ? "🌈 Colorful Theme" : "🌑 Default Theme"}
+          {isColorfulTheme ? "🌈 Theme" : "🌑 Theme"}
         </button>
       </div>
+
+      {/* Floating Home Button - Bottom Right */}
+      <div style={{ position: "fixed", bottom: 30, right: 30, zIndex: 1000 }}>
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            backgroundColor: "#000",
+            color: "#fff",
+            border: "none",
+            borderRadius: "50%",
+            width: "60px",
+            height: "60px",
+            fontSize: "1.5rem",
+            fontWeight: 700,
+            cursor: "pointer",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+            transition: "all 0.2s",
+          }}
+          {...hoverEffect}
+        >
+          🏠
+        </button>
+      </div>
+
+      <ScrollToTop />
+      <Sidebar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         {patterns.map(({ path, Component }) => (
@@ -68,6 +118,9 @@ const App = () => {
         {caseStudies.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
+
+        {/* Fallback route - redirect to home if path not found */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
