@@ -1,54 +1,103 @@
 import React from "react";
-import CaseStudyTemplate from "./CaseStudyTemplate";
+import NotifyMeButton from "./studies/NotifyMeButton";
+import PizzaBillingSystem from "./studies/PizzaBillingSystem";
+import ParkingLot from "./studies/ParkingLot";
+import SnakenLadder from "./studies/SnakenLadder";
+import ElevatorSystem from "./studies/ElevatorSystem";
+import CarRentalSystem from "./studies/CarRentalSystem";
+import CaseStudyTemplate from "./studies/CaseStudyTemplate";
+import TrueCaller from "./studies/TrueCaller";
+import HotelBookingSystem from "./studies/HotelBookingSystem";
+import ATMSystem from "./studies/ATM";
+import VendingMachine from "./studies/VendingMachine";
+import OnlineFoodDeliverySystem from "./studies/FoodDeliveryApp";
+import TrafficLightSystem from "./studies/TrafficLightSystem";
+import ChatMessagingApp from "./studies/ChatBasedSystem";
+import BookMyShow from "./studies/BookMyShow";
+import LibraryManagementSystem from "./studies/LibraryManagementSystem";
+import TicTacToe from "./studies/TicTacToe";
+import ChessGame from "./studies/ChessGame";
+import BowlingAlleyMachine from "./studies/BowlingAlleyMachine";
+import CricBuzz from "./studies/CricBuzz";
+import AirlineManagementSystem from "./studies/AirlineManagementSystem";
+import Amazon from "./studies/Amazon";
+import CarBookingService from "./studies/CarBookingService";
 
 const caseStudyList = [
-  "Notify-Me Button",
-  "Pizza Billing System",
-  "Parking Lot",
-  "Snake n Ladder",
-  "Elevator System",
-  "Car Rental System",
-  "Logging System",
-  "Tic-Tac-Toe",
+  "NotifyMeButton",
+  "PizzaBillingSystem",
+  "ParkingLot",
+  "SnakenLadder",
+  "ElevatorSystem",
+  "CarRentalSystem",
+  "LoggingSystem",
+  "TicTacToe",
   "BookMyShow",
-  "Vending Machine",
+  "VendingMachine",
   "ATM",
-  "Chess game",
-  "File System",
+  "ChessGame",
+  "FileSystem",
   "Splitwise",
-  "Splitwise Simplify Algorithm",
+  "SplitwiseSimplifyAlgorithm",
   "CricBuzz",
-  "True Caller",
-  "Car Booking Service",
-  "Hotel Booking System",
-  "Library Management System",
-  "Traffic Light System",
-  "Meeting Scheduler",
-  "Online Voting System",
-  "Inventory Management System",
-  "Cache Mechanism",
+  "TrueCaller",
+  "CarBookingService",
+  "HotelBookingSystem",
+  "LibraryManagementSystem",
+  "TrafficLightSystem",
+  "MeetingScheduler",
+  "OnlineVotingSystem",
+  "InventoryManagementSystem",
+  "CacheMechanism",
   "LinkedIn",
   "Amazon",
-  "Airline Management System",
-  "Stock Exchange System",
-  "Learning Management System",
-  "Calendar Application",
-  "Payment System",
-  "Chat based system",
-  "Food delivery app",
-  "Community Discussion Platform",
-  "Restaurant Management System",
-  "Bowling Alley Machine",
-  "Rate Limiter",
+  "AirlineManagementSystem",
+  "StockExchangeSystem",
+  "LearningManagementSystem",
+  "CalendarApplication",
+  "PaymentSystem",
+  "ChatBasedSystem",
+  "FoodDeliveryApp",
+  "CommunityDiscussionPlatform",
+  "RestaurantManagementSystem",
+  "BowlingAlleyMachine",
+  "RateLimiter",
 ];
 
 const caseStudies = {};
 
+caseStudies.NotifyMeButton = NotifyMeButton;
+caseStudies.PizzaBillingSystem = PizzaBillingSystem;
+caseStudies.ParkingLot = ParkingLot;
+caseStudies.SnakenLadder = SnakenLadder;
+caseStudies.ElevatorSystem = ElevatorSystem;
+caseStudies.CarRentalSystem = CarRentalSystem;
+caseStudies.TrueCaller = TrueCaller;
+caseStudies.HotelBookingSystem = HotelBookingSystem;
+caseStudies.ATMSystem = ATMSystem;
+caseStudies.TrueCaller = TrueCaller;
+caseStudies.VendingMachine = VendingMachine;
+caseStudies.TrafficLightSystem = TrafficLightSystem;
+caseStudies.OnlineFoodDeliverySystem = OnlineFoodDeliverySystem;
+caseStudies.ChatMessagingApp = ChatMessagingApp;
+caseStudies.BookMyShow = BookMyShow;
+caseStudies.LibraryManagementSystem = LibraryManagementSystem;
+caseStudies.ChessGame = ChessGame;
+caseStudies.TicTacToe = TicTacToe;
+caseStudies.BowlingAlleyMachine = BowlingAlleyMachine;
+caseStudies.CricBuzz = CricBuzz;
+caseStudies.AirlineManagementSystem = AirlineManagementSystem;
+caseStudies.Amazon = Amazon;
+caseStudies.CarBookingService = CarBookingService;
+
 caseStudyList.forEach((name) => {
-  const componentName = name.replace(/[^a-zA-Z0-9]/g, "");
-  caseStudies[componentName] = () => (
-    <CaseStudyTemplate title={`Design ${name}`} />
-  );
+  if (!caseStudies[name]) {
+    caseStudies[name] = () => (
+      <CaseStudyTemplate
+        title={`Design ${name.replace(/([A-Z])/g, " $1").trim()}`}
+      />
+    );
+  }
 });
 
 export default caseStudies;

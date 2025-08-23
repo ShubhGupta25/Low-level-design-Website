@@ -13,7 +13,6 @@ const styles = {
   },
   header: {
     textAlign: "center",
-    marginBottom: "3rem",
     borderBottom: "1px solid #333",
     paddingBottom: "1.5rem",
   },

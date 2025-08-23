@@ -2,17 +2,19 @@ import React from "react";
 
 const styles = {
   section: {
-    marginTop: "3rem",
-    paddingTop: "2rem",
     borderTop: "1px solid #333",
   },
   layout: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: "2rem",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    justifyItems: "center",
   },
   column: {
     lineHeight: "1.7",
+    width: "30%",
+    minWidth: "300px",
   },
   title: {
     color: "#A569BD",
@@ -35,12 +37,22 @@ const styles = {
   },
 };
 
+const getStyle = (index) => {
+  if (index === 5) {
+    return {
+      ...styles.column,
+      width: "70%", // added width for index 0 or 3
+    };
+  }
+  return styles.column; // default style for other indices
+};
+
 const ExplanationSection = ({ content }) => {
   return (
     <section style={styles.section}>
       <div style={styles.layout}>
         {content.map((col, index) => (
-          <div key={index} style={styles.column}>
+          <div key={index} style={getStyle(index)}>
             <h2 style={styles.title}>{col.title}</h2>
             <div style={styles.text}>{col.content}</div>
           </div>

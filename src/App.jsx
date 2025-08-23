@@ -6,14 +6,15 @@ import CaseStudyComponents from "./components/case-studies";
 
 const createRoutes = (componentObject, prefix) => {
   return Object.entries(componentObject).map(([name, Component]) => {
-    // Remove leading dash and '-pattern' from the route
-    const path = `/${prefix}/${name
-      .replace(/Pattern$/, "")
+    // Route: /case-studies/car-rental-system
+    // Key: CarRentalSystem
+    // Map kebab-case route to PascalCase key
+    const routeName = name
       .replace(/([A-Z])/g, "-$1")
       .toLowerCase()
-      .replace(/^-/, "")
-      .replace(/-pattern/, "")}`;
-    return { path, name: name.replace("Pattern", ""), Component };
+      .replace(/^-/, "");
+    const path = `/${prefix}/${routeName}`;
+    return { path, name, Component };
   });
 };
 
