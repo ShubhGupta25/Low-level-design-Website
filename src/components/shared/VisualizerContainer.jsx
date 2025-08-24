@@ -1,4 +1,71 @@
 import React from "react";
+import styles from "../shared/Styles";
+const icons = {
+  // Case studies
+  "Notify Me Button System": "🔔",
+  "Pizza Billing System": "🍕",
+  "Parking Lot System": "🅿️",
+  "Snaken Ladder": "🎲",
+  "Elevator System": "🛗",
+  "Car Rental System": "🚗",
+  "Logging System": "📝",
+  "Tic Tac Toe Game": "❌⭕",
+  "BookMyShow (Ticket Booking)": "🎬",
+  "Vending Machine": "🥤",
+  "ATM System": "🏧",
+  "Chess Game": "♟️",
+  "File System": "📁",
+  "Splitwise (Expense Sharing)": "💸",
+  "Splitwise Simplify Algorithm": "💸",
+  "TrueCaller (Caller Identification & Spam Detection)": "📞",
+  "Hotel Booking System": "🏨",
+  "Library Management System": "📚",
+  "Traffic Light System": "🚦",
+  "Car Booking Service (Uber/Ola-like)": "🚙",
+  "Airline Management System": "✈️",
+  "Amazon E-Commerce System": "🛒",
+  "Rate Limiter System": "⏱️",
+  "Restaurant Management System": "🍽️",
+  "Community Discussion Platform": "💬",
+  "Calendar Application": "📅",
+  "Payment System": "💰",
+  "Chat-Based System": "💬",
+  "Food Delivery App": "🍱",
+  "Bowling Alley Machine": "🎳",
+  "Learning Management System": "🎓",
+  "Stock Exchange System": "📈",
+  "Inventory Management System": "📦",
+  "Online Voting System": "🗳️",
+  "Meeting Scheduler": "📌",
+  "Cache Mechanism": "⚡",
+  "LinkedIn System": "💼",
+
+  // Patterns
+  "Decorator Pattern": "🎨",
+  "Chain of Responsibility Pattern": "⛓️",
+  "Observer Pattern": "👀",
+  "Factory Pattern": "🏭",
+  "State Pattern": "🔄",
+  "Singleton Pattern": "🔒",
+  "Builder Pattern": "🧱",
+  "Composite Pattern": "🧩",
+  "Adapter Pattern": "🔌",
+  "Facade Pattern": "🏛️",
+  "Proxy Pattern": "🛡️",
+  "Chain Pattern": "⛓️",
+  "Command Pattern": "🎯",
+  "Null Object Pattern": "🚫",
+  "Bridge Pattern": "🌉",
+  "Prototype Pattern": "🧬",
+  "Flyweight Pattern": "🪶",
+  "Interpreter Pattern": "📖",
+  "Iterator Pattern": "🔁",
+  "Mediator Pattern": "🤝",
+  "Memento Pattern": "🗂️",
+  "Template Method Pattern": "📐",
+  "Visitor Pattern": "👤",
+  "Abstract Factory Pattern": "🏭",
+};
 
 const VisualizerContainer = ({ title, subtitle, children }) => {
   return (
@@ -24,7 +91,7 @@ const VisualizerContainer = ({ title, subtitle, children }) => {
 
         .vc-title {
           font-size: 1.8rem;
-          line-height: 1.2;
+          line-height: 1.2;    
           background: linear-gradient(90deg, #A569BD, #5DADE2);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -36,6 +103,12 @@ const VisualizerContainer = ({ title, subtitle, children }) => {
           color: #999;
           font-weight: 300;
           margin-top: 0.5rem;
+        }
+
+        .hover-item {
+          cursor: pointer; 
+          filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600);
+          transition: filter 0.25s ease;
         }
 
         /* Tablet screens (≥600px) */
@@ -85,7 +158,17 @@ const VisualizerContainer = ({ title, subtitle, children }) => {
 
       <div className="vc-container">
         <header className="vc-header">
-          <h1 className="vc-title">{title}</h1>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <h1 className="hover-item"> {icons[title] || "📌"} </h1>
+            <h1 className="vc-title">{title}</h1>
+          </div>
           {subtitle && <p className="vc-subtitle">{subtitle}</p>}
         </header>
         <main>{children}</main>

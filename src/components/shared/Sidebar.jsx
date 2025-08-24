@@ -18,6 +18,7 @@ const icons = {
   ChessGame: "♟️",
   FileSystem: "📁",
   Splitwise: "💸",
+  SplitwiseSimplifyAlgorithm: "💸",
   TrueCaller: "📞",
   HotelBookingSystem: "🏨",
   LibraryManagementSystem: "📚",
