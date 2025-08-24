@@ -130,7 +130,7 @@ const VisualizerContainer = ({ title, subtitle, children }) => {
           .vc-container {
             padding: 2rem 3rem;
             border-radius: 1.5rem;
-            max-width: 95%;
+            max-width: 95vw;
             margin: 3rem 1rem 0rem 4rem;
           }
           .vc-title {
@@ -144,7 +144,7 @@ const VisualizerContainer = ({ title, subtitle, children }) => {
         /* Large desktops (≥1200px) */
         @media (min-width: 1200px) {
           .vc-container {
-            max-width: 1300px;
+            max-width: 95vw;
             margin: 3rem 1rem 0rem 4rem;
           }
           .vc-title {
