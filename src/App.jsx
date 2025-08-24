@@ -28,8 +28,8 @@ const App = () => {
     backgroundColor: "#000000b1",
     color: "#fff",
     border: "none",
-    borderRadius: "12px",
-    padding: "0.6rem 1.4rem",
+    borderRadius: "8px",
+    padding: "0.6rem 1.2rem",
     fontWeight: 600,
     fontSize: "1rem",
     cursor: "pointer",
@@ -38,6 +38,7 @@ const App = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginRight: "0.5rem",
   };
 
   // Hover & click effects
@@ -52,51 +53,33 @@ const App = () => {
 
   return (
     <>
-      {/* Back Button - Top Left */}
+      {/* Top Buttons - like browser tabs */}
       <div
         style={{
           position: "fixed",
           top: "1rem",
           left: "4rem",
           zIndex: 1000,
+          display: "flex",
+          gap: "0.5rem",
         }}
       >
+        {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           style={buttonStyle}
           {...hoverEffect}
         >
-          ←
+          ← Back
         </button>
-      </div>
 
-      {/* Floating Home Button - Bottom Right */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: "1rem",
-          right: "1rem",
-          zIndex: 1000,
-        }}
-      >
+        {/* Home Button */}
         <button
           onClick={() => navigate("/")}
-          style={{
-            backgroundColor: "#000000b1",
-            color: "#fff",
-            border: "none",
-            borderRadius: "50%",
-            width: "50px",
-            height: "50px",
-            fontSize: "1.2rem",
-            fontWeight: 700,
-            cursor: "pointer",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
-            transition: "all 0.2s",
-          }}
+          style={buttonStyle}
           {...hoverEffect}
         >
-          🏠
+          🏠 Home
         </button>
       </div>
 
@@ -111,22 +94,16 @@ const App = () => {
         {caseStudies.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
-
-        {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
+      {/* Mobile optimization */}
       <style>
         {`
           @media (max-width: 768px) {
             button {
               padding: 0.5rem 1rem !important;
               font-size: 0.9rem !important;
-            }
-            button[style*="border-radius: 50%"] {
-              width: 40px !important;
-              height: 40px !important;
-              font-size: 1rem !important;
             }
           }
         `}
