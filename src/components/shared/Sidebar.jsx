@@ -40,7 +40,6 @@ const icons = {
   MeetingScheduler: "📌",
   CacheMechanism: "⚡",
   LinkedIn: "💼",
-  // Patterns
   DecoratorPattern: "🎨",
   ObserverPattern: "👀",
   FactoryPattern: "🏭",
@@ -98,25 +97,13 @@ const Sidebar = () => {
       return (
         <div
           key={name}
-          onClick={() => navigate(path)}
-          className="sidebar-item"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "10px 12px",
-            cursor: "pointer",
-            borderRadius: "8px",
-            transition: "all 0.2s",
-            whiteSpace: "nowrap",
+          onClick={() => {
+            navigate(path);
+            setIsExpanded(false); // close on mobile after navigation
           }}
+          className="sidebar-item"
         >
-          <span
-            className="sidebar-icon"
-            style={{ fontSize: "1.6rem", minWidth: "24px" }}
-          >
-            {icon}
-          </span>
+          <span className="sidebar-icon">{icon}</span>
           <span className="sidebar-text">
             {name.replace(/([A-Z])/g, " $1").trim()}
           </span>
@@ -125,116 +112,188 @@ const Sidebar = () => {
     });
 
   return (
-    <div
-      className={`sidebar ${isExpanded ? "expanded" : ""}`}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        height: "100vh",
-        width: isExpanded ? "220px" : "60px",
-        background: "linear-gradient(180deg, #1a1a1a, #111)",
-        color: "#fff",
-        overflow: "hidden",
-        transition: "width 0.4s ease",
-        zIndex: 1000,
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "2px 0 12px rgba(0,0,0,0.5)",
-      }}
-    >
-      {/* Collapse/Expand Button */}
+    <>
+      {/* Toggle is always visible; CSS positions it differently on mobile */}
       <div
         onClick={() => setIsExpanded((prev) => !prev)}
-        style={{
-          padding: "10px",
-          cursor: "pointer",
-          textAlign: "center",
-          borderBottom: "1px solid #333",
-          fontSize: "1.4rem",
-          userSelect: "none",
-          transition: "background 0.2s",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#222")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        className="sidebar-toggle"
+        aria-label="Toggle sidebar"
+        role="button"
       >
         ☰
       </div>
 
-      {/* Search Input */}
-      {isExpanded && (
-        <div style={{ padding: "10px" }}>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "6px 10px",
-              borderRadius: "8px",
-              border: "none",
-              outline: "none",
-              background: "#222",
-              color: "#fff",
-            }}
-          />
+      <div className={`sidebar ${isExpanded ? "expanded" : ""}`}>
+        {/* Search (hidden on mobile per requirements) */}
+        {isExpanded && (
+          <div className="sidebar-search">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        )}
+
+        {/* Items */}
+        <div className="sidebar-items">
+          {isExpanded && filteredCaseStudies.length > 0 && (
+            <div className="sidebar-group-title">Case Studies</div>
+          )}
+          {renderItems(filteredCaseStudies, "case-studies")}
+
+          {isExpanded && filteredPatterns.length > 0 && (
+            <div className="sidebar-group-title">Patterns</div>
+          )}
+          {renderItems(filteredPatterns, "patterns")}
         </div>
-      )}
-
-      {/* Sidebar items */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          overflowX: "hidden",
-          paddingTop: "10px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "6px",
-        }}
-      >
-        {isExpanded && filteredCaseStudies.length > 0 && (
-          <div
-            style={{ padding: "0 12px", fontWeight: "bold", marginTop: "6px" }}
-          >
-            Case Studies
-          </div>
-        )}
-        {renderItems(filteredCaseStudies, "case-studies")}
-
-        {isExpanded && filteredPatterns.length > 0 && (
-          <div
-            style={{ padding: "0 12px", fontWeight: "bold", marginTop: "12px" }}
-          >
-            Patterns
-          </div>
-        )}
-        {renderItems(filteredPatterns, "patterns")}
       </div>
+
+      {/* Overlay for mobile (click to close) */}
+      {isExpanded && (
+        <div className="sidebar-overlay" onClick={() => setIsExpanded(false)} />
+      )}
 
       <style>
         {`
-          .sidebar:not(.expanded) { width: 60px; }
-          .sidebar.expanded { width: 300px !important; }
-          .sidebar-text { opacity: 0; transition: opacity 0.3s, margin-left 0.3s; margin-left: 0; }
-          .sidebar.expanded .sidebar-text, .sidebar:hover:not(.expanded) .sidebar-text {
-            opacity: 1; margin-left: 5px;
+          /* --- Base / Desktop styles --- */
+          .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 50px; /* collapsed width */
+            background: linear-gradient(180deg, #1a1a1a, #111);
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.25s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.5);
+          }
+          .sidebar.expanded { width: 280px; }
+
+          .sidebar-toggle {
+            position: fixed; /* sits above content */
+            top: 10px;
+            left: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.4rem;
+            user-select: none;
+            background: #111;
+            border-radius: 8px;
+            z-index: 1100;
+            transition: box-shadow 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+          }
+          .sidebar-toggle:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+          .sidebar-toggle:active { transform: scale(0.96); }
+
+          .sidebar-search { margin-top: 4rem; padding: 10px; border-bottom: 1px solid #222; }
+          .sidebar-search input {
+            width: 100%;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: #222;
+            color: #fff;
+          }
+
+          .sidebar-items {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 6px 0;
+          }
+
+          .sidebar-group-title {
+            padding: 8px 12px;
+            font-weight: bold;
+            margin-top: 6px;
+            color: #eee;
+          }
+
+          .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
           }
           .sidebar-item:hover { background: #222; transform: translateX(5px); }
+
+          .sidebar-icon { font-size: 1.5rem; min-width: 24px; }
+          /* 🔥 restore icon glow hover effect */
           .sidebar-item:hover .sidebar-icon {
-            filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600); transition: filter 0.3s;
+            filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600);
+            transition: filter 0.25s ease;
           }
-          .sidebar::-webkit-scrollbar { width: 0 !important; background: transparent; }
+
+          .sidebar-text {
+            opacity: 0;
+            transition: opacity 0.25s ease, margin-left 0.25s ease;
+            margin-left: 0;
+          }
+          /* Show text when expanded */
+          .sidebar.expanded .sidebar-text { opacity: 1; margin-left: 5px; }
+          /* Desktop: peek text on hover even when collapsed */
+          .sidebar:hover:not(.expanded) .sidebar-text { opacity: 1; margin-left: 5px; }
+
+          .sidebar::-webkit-scrollbar { display: none; }
           .sidebar { scrollbar-width: none; -ms-overflow-style: none; }
+
+          /* --- Mobile styles --- */
           @media (max-width: 768px) {
-            .sidebar:not(.expanded) { width: 50px; }
-            .sidebar.expanded { width: 180px !important; }
+            /* Sidebar becomes a sliding overlay (icons-only) */
+            .sidebar {
+              width: 60px;                /* target width when visible */
+              transform: translateX(-100%); /* hidden by default */
+              transition: transform 0.28s ease;
+              box-shadow: none;
+            }
+            .sidebar.expanded {
+              transform: translateX(0);   /* slide in */
+              box-shadow: 2px 0 12px rgba(0,0,0,0.6);
+            }
+
+            /* Burger button pinned, always visible */
+            .sidebar-toggle {
+              top: 12px;
+              left: 12px;
+              background: #111;
+              border-radius: 8px;
+            }
+
+            /* Hide text & group titles & search on mobile for icons-only panel */
+            
+
+            /* Overlay appears only on mobile */
+            .sidebar-overlay {
+              position: fixed;
+              inset: 0;
+              background: rgba(0,0,0,0.4);
+              z-index: 900;
+            }
           }
-            .sidebar::-webkit-scrollbar {display: none !important; color : transparent; !important;}
+
+          /* tiny phones */
+          @media (max-width: 400px) {
+            .sidebar { width: 56px; }
+            .sidebar-icon { font-size: 1.4rem; }
+          }
         `}
       </style>
-    </div>
+    </>
   );
 };
 

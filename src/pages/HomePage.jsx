@@ -74,23 +74,24 @@ const styles = {
   container: {
     maxWidth: "1200px",
     margin: "2rem auto",
-    padding: "2rem",
+    padding: "1rem",
     fontFamily: "'Inter', sans-serif",
     color: "#fff",
   },
   header: {
     textAlign: "center",
-    fontSize: "3rem",
+    fontSize: "2.5rem",
     marginBottom: "2rem",
   },
   listTitle: {
-    fontSize: "1.8rem",
+    fontSize: "1.6rem",
     marginBottom: "1rem",
     borderBottom: "1px solid #444",
     paddingBottom: "0.5rem",
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
+    flexWrap: "wrap",
   },
   list: {
     listStyle: "none",
@@ -114,18 +115,17 @@ const styles = {
     color: "#5DADE2",
     textDecoration: "none",
     flex: 1,
+    wordBreak: "break-word",
   },
-  icon: {
-    fontSize: "1.4rem",
-  },
+  icon: { fontSize: "1.4rem" },
   innercontainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "1fr",
     gap: "2rem",
   },
 };
 
-// Grouping Functions
+// Responsive breakpoint arrays
 const CREATIONAL = [
   "Factory",
   "AbstractFactory",
@@ -229,12 +229,11 @@ const groupCaseStudies = (caseStudies) => {
   return groups;
 };
 
-// Component
 const HomePage = () => {
   const groupedPatterns = groupPatterns(patterns);
   const groupedStudies = groupCaseStudies(caseStudies);
 
-  const renderItems = (items, isPattern = false) =>
+  const renderItems = (items) =>
     items.map((item) => (
       <li key={item.path} style={styles.listItem} className="hover-item">
         <Link to={item.path} style={styles.link}>
@@ -247,7 +246,7 @@ const HomePage = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>Low Level Design Patterns & Case Studies</h1>
-      <div style={styles.innercontainer}>
+      <div style={styles.innercontainer} className="home-grid">
         <div>
           <h2 style={styles.listTitle}>📜 Creational Patterns</h2>
           <ul style={styles.list}>{renderItems(groupedPatterns.Creational)}</ul>
@@ -258,8 +257,8 @@ const HomePage = () => {
           <h2 style={styles.listTitle}>🔄 Behavioral Patterns</h2>
           <ul style={styles.list}>{renderItems(groupedPatterns.Behavioral)}</ul>
         </div>
+
         <div>
-          {" "}
           {Object.entries(groupedStudies).map(([group, studies]) => (
             <div key={group}>
               <h2 style={styles.listTitle}>
@@ -267,131 +266,65 @@ const HomePage = () => {
               </h2>
               <ul style={styles.list}>{renderItems(studies)}</ul>
             </div>
-          ))}{" "}
+          ))}
         </div>
       </div>
-      <footer
-        className="colorful-footer"
-        style={{
-          background: "rgba(35, 41, 70, 0.97)",
-          padding: "3rem 1rem",
-          marginTop: "3rem",
-          borderTop: "6px solid",
-          borderImage:
-            "linear-gradient(90deg, #22d3ee, #f59e42, #10b981, #fde047) 1",
-          fontFamily: "'Fira Mono', monospace",
-          color: "#e0e0e0",
-          textAlign: "center",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          {/* Author & Social Links */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              alignItems: "center",
-            }}
-          >
-            <span style={{ fontSize: "1.2rem", fontWeight: "700" }}>
-              👨‍💻 Shubh Gupta
-            </span>
-            <div style={{ display: "flex", gap: "1.5rem" }}>
-              <a
-                href="https://github.com/ShubhGupta25"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "#22d3ee",
-                  textDecoration: "none",
-                  transition: "all 0.3s",
-                }}
-                className="footer-link"
-              >
-                🐱 GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/shubh-guptaa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "#f59e42",
-                  textDecoration: "none",
-                  transition: "all 0.3s",
-                }}
-                className="footer-link"
-              >
-                💼 LinkedIn
-              </a>
-            </div>
-          </div>
 
-          {/* Copyright */}
-          <div
-            style={{
-              marginTop: "2rem",
-              fontSize: "0.9rem",
-              color: "#fde047",
-            }}
-          >
-            © {new Date().getFullYear()} Shubh Gupta. All Rights Reserved.
-          </div>
+      <style>{`
+        /* Responsive Grid */
+        @media (min-width: 768px) {
+          .home-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+          }
+        }
 
-          {/* Accent Glow Line */}
-          <div
-            style={{
-              width: "80px",
-              height: "4px",
-              margin: "1rem auto 0",
-              borderRadius: "2px",
-              background:
-                "linear-gradient(90deg, #22d3ee, #f59e42, #10b981, #fde047)",
-              boxShadow:
-                "0 0 12px #22d3eeaa, 0 0 12px #f59e42aa, 0 0 12px #10b981aa, 0 0 12px #fde047aa",
-            }}
-          ></div>
-        </div>
+        @media (min-width: 1200px) {
+          .home-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+          }
+        }
 
-        <style>
-          {`
-      .footer-link:hover {
-        text-shadow: 0 0 6px #fde047;
-        transform: translateY(-2px);
-      }
-    `}
-        </style>
+        /* Hover effects */
+        .hover-item:hover {
+          background: #333;
+          transform: translateX(5px);
+        }
 
-        <style>
-          {`
-    .hover-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 6px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        .hover-item span {
+          transition: all 0.3s ease;
+        }
 
-    .hover-item:hover {
-      background: #333;
-      transform: translateX(5px);
-    }
+        .hover-item:hover span {
+          filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600);
+          transform: scale(1.2);
+        }
 
-    .hover-item span {
-      transition: all 0.3s ease;
-    }
+        /* Make lists wrap on small screens */
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
 
-    .hover-item:hover span {
-       filter: drop-shadow(0 0 8px #FDE047) drop-shadow(0 0 4px #FFD600); transition: filter 0.3s;
-      transform: scale(1.2);
-    }
-  `}
-        </style>
-      </footer>
+        li {
+          flex: 1 1 100%; /* full width mobile, auto for larger screens */
+        }
+
+        @media (min-width: 600px) {
+          li {
+            flex: 1 1 48%;
+          }
+        }
+
+        @media (min-width: 900px) {
+          li {
+            flex: 1 1 32%;
+          }
+        }
+      `}</style>
     </div>
   );
 };
