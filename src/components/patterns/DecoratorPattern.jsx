@@ -86,8 +86,10 @@ const explanationContent = [
 // --- Styles (condensed for brevity) ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "250px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -97,8 +99,14 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
-  controlGroup: { display: "flex", flexDirection: "column", gap: "0.5rem" },
+  controlGroup: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  },
   label: {
     display: "flex",
     justifyContent: "space-between",
@@ -110,6 +118,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1.5rem",
+    width: "90vw",
+    maxWidth: "700px",
+    flexWrap: "wrap",
   },
   imageStage: {
     display: "flex",
@@ -119,11 +130,19 @@ const styles = {
     backgroundColor: "#252525",
     padding: "2rem",
     borderRadius: "12px",
+    flexWrap: "wrap",
+    height: "500px",
+    overflowY: "auto",
   },
-  imageWrapper: { textAlign: "center" },
+  imageWrapper: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  },
   image: {
-    width: "280px",
-    height: "280px",
+    width: "200px",
+    height: "200px",
     objectFit: "cover",
     borderRadius: "8px",
     transition: "filter 0.4s ease-in-out",
@@ -149,6 +168,10 @@ const styles = {
     padding: "1rem",
     borderRadius: "12px",
     overflow: "hidden",
+    maxWidth: "700px",
+    width: "80vw",
+    height: "420px",
+    overflowY: "auto",
   },
 };
 

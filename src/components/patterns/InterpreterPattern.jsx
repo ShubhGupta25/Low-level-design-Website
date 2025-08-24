@@ -65,8 +65,10 @@ const explanationContent = [
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "320px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -76,6 +78,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
   input: {
     padding: "0.7rem",
@@ -110,7 +114,8 @@ const styles = {
     backgroundColor: "#252525",
     padding: "1rem",
     borderRadius: "12px",
-    marginTop: "2rem",
+    width: "90vw",
+    maxWidth: "600px",
   },
 };
 
@@ -217,7 +222,13 @@ const InterpreterPattern = () => {
           {error && <div style={styles.error}>{error}</div>}
           {result !== null && <div style={styles.result}>Result: {result}</div>}
         </div>
-        <div style={{ flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <div style={styles.codePanel}>
             <SyntaxHighlighter
               language="javascript"

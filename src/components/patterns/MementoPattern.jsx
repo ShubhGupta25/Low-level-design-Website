@@ -51,8 +51,10 @@ const explanationContent = [
 
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "320px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -62,6 +64,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
   statePanel: {
     backgroundColor: "#343434",
@@ -71,6 +75,9 @@ const styles = {
     marginBottom: "1rem",
     color: "#fff",
     fontSize: "1.1rem",
+    marginTop: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
   input: {
     padding: "0.7rem",
@@ -97,7 +104,10 @@ const styles = {
     backgroundColor: "#252525",
     padding: "1rem",
     borderRadius: "12px",
-    marginTop: "2rem",
+    maxWidth: "600px",
+    width: "90vw",
+    height: "420px",
+    overflowY: "auto",
   },
 };
 
@@ -199,44 +209,50 @@ const MementoPattern = () => {
       subtitle="Save and restore object state (undo/redo)"
     >
       <div style={styles.mainLayout}>
-        <div style={styles.controlsPanel}>
-          <h3>State Manager</h3>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter new state..."
-            style={styles.input}
-          />
-          <button style={styles.button} onClick={handleSetState}>
-            Set State
-          </button>
-          <button style={styles.button} onClick={handleUndo}>
-            Undo
-          </button>
-          <button style={styles.button} onClick={handleRedo}>
-            Redo
-          </button>
-        </div>
-        <div style={{ flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div style={styles.controlsPanel}>
+            <h3>State Manager</h3>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Enter new state..."
+              style={styles.input}
+            />
+            <button style={styles.button} onClick={handleSetState}>
+              Set State
+            </button>
+            <button style={styles.button} onClick={handleUndo}>
+              Undo
+            </button>
+            <button style={styles.button} onClick={handleRedo}>
+              Redo
+            </button>
+          </div>
           <div style={styles.statePanel}>
             <b>Current State:</b>{" "}
             {state || <span style={{ color: "#aaa" }}>No state set.</span>}
           </div>
-          <div style={styles.codePanel}>
-            <SyntaxHighlighter
-              language="javascript"
-              style={githubGist}
-              customStyle={{
-                background: "transparent",
-                color: "smokewhite",
-                fontSize: "0.9rem",
-                borderRadius: "8px",
-              }}
-            >
-              {code}
-            </SyntaxHighlighter>
-          </div>
+        </div>
+        <div style={styles.codePanel}>
+          <SyntaxHighlighter
+            language="javascript"
+            style={githubGist}
+            customStyle={{
+              background: "transparent",
+              color: "smokewhite",
+              fontSize: "0.9rem",
+              borderRadius: "8px",
+            }}
+          >
+            {code}
+          </SyntaxHighlighter>
         </div>
       </div>
       <ExplanationSection content={explanationContent} />

@@ -61,8 +61,10 @@ const explanationContent = [
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "320px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -72,6 +74,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
   button: {
     padding: "0.7rem 1.5rem",
@@ -99,7 +103,10 @@ const styles = {
     backgroundColor: "#252525",
     padding: "1rem",
     borderRadius: "12px",
-    marginTop: "2rem",
+    maxWidth: "600px",
+    width: "90vw",
+    height: "420px",
+    overflowY: "auto",
   },
 };
 
@@ -211,7 +218,13 @@ const IteratorPattern = () => {
             Next
           </button>
         </div>
-        <div style={{ flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <div style={styles.codePanel}>
             <SyntaxHighlighter
               language="javascript"

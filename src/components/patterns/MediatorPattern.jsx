@@ -57,8 +57,10 @@ const explanationContent = [
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "320px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -68,6 +70,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "300px",
   },
   chatPanel: {
     backgroundColor: "#343434",
@@ -78,6 +82,10 @@ const styles = {
     flexDirection: "column",
     gap: "0.5rem",
     marginBottom: "1rem",
+    marginTop: "1rem",
+    width: "90vw",
+    maxWidth: "318px",
+    oveerflowY: "auto",
   },
   message: {
     background: "#181818",
@@ -117,7 +125,10 @@ const styles = {
     backgroundColor: "#252525",
     padding: "1rem",
     borderRadius: "12px",
-    marginTop: "2rem",
+    maxWidth: "600px",
+    width: "90vw",
+    height: "420px",
+    overflowY: "auto",
   },
 };
 
@@ -216,45 +227,51 @@ const MediatorPattern = () => {
       subtitle="Centralized communication via a mediator."
     >
       <div style={styles.mainLayout}>
-        <div style={styles.controlsPanel}>
-          <h3>Chatroom</h3>
-          <select
-            style={styles.userSelect}
-            value={selectedUser}
-            onChange={(e) => setSelectedUser(e.target.value)}
-          >
-            {userNames.map((name) => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message..."
-            style={styles.input}
-          />
-          <select
-            style={styles.userSelect}
-            value={toUser}
-            onChange={(e) => setToUser(e.target.value)}
-          >
-            <option value="">Send to All</option>
-            {userNames
-              .filter((n) => n !== selectedUser)
-              .map((name) => (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div style={styles.controlsPanel}>
+            <h3>Chatroom</h3>
+            <select
+              style={styles.userSelect}
+              value={selectedUser}
+              onChange={(e) => setSelectedUser(e.target.value)}
+            >
+              {userNames.map((name) => (
                 <option key={name} value={name}>
                   {name}
                 </option>
               ))}
-          </select>
-          <button style={styles.button} onClick={handleSend}>
-            Send
-          </button>
-        </div>
-        <div style={{ flex: 1 }}>
+            </select>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type a message..."
+              style={styles.input}
+            />
+            <select
+              style={styles.userSelect}
+              value={toUser}
+              onChange={(e) => setToUser(e.target.value)}
+            >
+              <option value="">Send to All</option>
+              {userNames
+                .filter((n) => n !== selectedUser)
+                .map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+            </select>
+            <button style={styles.button} onClick={handleSend}>
+              Send
+            </button>
+          </div>
           <div style={styles.chatPanel}>
             {messages.map((msg, idx) => (
               <div key={idx} style={styles.message}>
@@ -265,20 +282,20 @@ const MediatorPattern = () => {
               <div style={{ color: "#aaa" }}>No messages yet.</div>
             )}
           </div>
-          <div style={styles.codePanel}>
-            <SyntaxHighlighter
-              language="javascript"
-              style={githubGist}
-              customStyle={{
-                background: "transparent",
-                color: "smokewhite",
-                fontSize: "0.9rem",
-                borderRadius: "8px",
-              }}
-            >
-              {code}
-            </SyntaxHighlighter>
-          </div>
+        </div>
+        <div style={styles.codePanel}>
+          <SyntaxHighlighter
+            language="javascript"
+            style={githubGist}
+            customStyle={{
+              background: "transparent",
+              color: "smokewhite",
+              fontSize: "0.9rem",
+              borderRadius: "8px",
+            }}
+          >
+            {code}
+          </SyntaxHighlighter>
         </div>
       </div>
       <ExplanationSection content={explanationContent} />
