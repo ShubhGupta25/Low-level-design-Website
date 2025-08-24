@@ -106,8 +106,10 @@ class Logger {
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "300px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -117,6 +119,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "500px",
   },
   button: {
     padding: "0.75rem 1.5rem",
@@ -132,7 +136,10 @@ const styles = {
     padding: "1rem",
     borderRadius: "12px",
     overflowY: "auto",
-    maxHeight: "400px",
+    maxWidth: "500px",
+    width: "90vw",
+    height: "305px",
+    overflowY: "auto",
   },
   logItem: {
     padding: "0.5rem",

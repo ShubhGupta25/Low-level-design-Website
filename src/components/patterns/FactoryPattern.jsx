@@ -120,8 +120,10 @@ const notificationFactory = (type, message) => {
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "300px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -131,6 +133,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    maxWidth: "450px",
+    width: "90vw",
   },
   button: {
     padding: "0.75rem 1.5rem",
@@ -147,6 +151,10 @@ const styles = {
     backgroundColor: "#343434",
     padding: "1rem",
     borderRadius: "12px",
+    maxWidth: "450px",
+    width: "90vw",
+    height: "335px",
+    overflowY: "auto",
   },
 };
 

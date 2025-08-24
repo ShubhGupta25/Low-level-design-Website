@@ -115,8 +115,10 @@ class HomeTheaterFacade {
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "300px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
@@ -124,11 +126,16 @@ const styles = {
     padding: "1.5rem",
     borderRadius: "12px",
     textAlign: "center",
+    width: "90vw",
+    maxWidth: "400px",
   },
   statusPanel: {
     backgroundColor: "#343434",
     padding: "1.5rem",
     borderRadius: "12px",
+    width: "90vw",
+    maxWidth: "400px",
+    height: "190px",
   },
   logItem: {
     padding: "0.5rem",

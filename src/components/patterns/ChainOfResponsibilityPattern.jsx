@@ -127,19 +127,26 @@ class BankHandler extends Handler {
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "350px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   controlsPanel: {
     backgroundColor: "#252525",
     padding: "1.5rem",
     borderRadius: "12px",
+    width: "90vw",
+    maxWidth: "500px",
   },
   logPanel: {
     backgroundColor: "#343434",
+    maxWidth: "500px",
+    width: "90vw",
     padding: "1.5rem",
     borderRadius: "12px",
+    minHeight: "370px",
   },
   logItem: {
     padding: "0.5rem",

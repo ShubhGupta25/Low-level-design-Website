@@ -138,12 +138,20 @@ class Remote {
 
 // --- Styles ---
 const styles = {
-  mainLayout: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" },
+  mainLayout: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: "2rem",
+  },
   panel: {
     backgroundColor: "#252525",
     padding: "1.5rem",
     borderRadius: "12px",
     textAlign: "center",
+    width: "90vw",
+    maxWidth: "500px",
   },
   button: {
     padding: "0.75rem 1.5rem",
@@ -161,6 +169,10 @@ const styles = {
     borderRadius: "8px",
     marginTop: "1rem",
     fontFamily: "monospace",
+    maxWidth: "470px",
+    width: "80vw",
+    height: "100px",
+    overflowY: "auto",
   },
 };
 

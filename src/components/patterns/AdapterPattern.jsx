@@ -113,11 +113,21 @@ class UserAdapter {
 
 // --- Styles ---
 const styles = {
-  mainLayout: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" },
+  mainLayout: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: "2rem",
+  },
   dataPanel: {
     backgroundColor: "#252525",
     padding: "1.5rem",
     borderRadius: "12px",
+    maxWidth: "500px",
+    width: "90vw",
+    height: "305px",
+    overflowY: "auto",
   },
   userCard: {
     backgroundColor: "#444",

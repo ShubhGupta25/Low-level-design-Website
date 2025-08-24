@@ -114,8 +114,10 @@ class ComputerBuilder {
 // --- Styles ---
 const styles = {
   mainLayout: {
-    display: "grid",
-    gridTemplateColumns: "350px 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
     gap: "2rem",
   },
   builderPanel: {
@@ -125,11 +127,18 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "90vw",
+    maxWidth: "500px",
   },
   productPanel: {
     backgroundColor: "#343434",
     padding: "1.5rem",
     borderRadius: "12px",
+    overflowY: "auto",
+    maxWidth: "500px",
+    width: "90vw",
+    height: "305px",
+    overflowY: "auto",
   },
   productDisplay: {
     padding: "1rem",

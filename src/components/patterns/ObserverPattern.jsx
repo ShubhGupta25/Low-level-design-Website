@@ -103,9 +103,16 @@ const subject = new NotificationCenter();
 
 // --- Styles ---
 const styles = {
-  mainLayout: { display: "flex", gap: "2rem" },
+  mainLayout: {
+    display: "flex",
+    gap: "2rem",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
+  },
   subjectPanel: {
-    width: "300px",
+    width: "90vw",
+    maxWidth: "500px",
     backgroundColor: "#252525",
     padding: "1.5rem",
     borderRadius: "12px",
@@ -114,6 +121,8 @@ const styles = {
     gap: "1rem",
   },
   observersPanel: {
+    maxWidth: "500px",
+    width: "90vw",
     flex: 1,
     display: "flex",
     flexDirection: "column",

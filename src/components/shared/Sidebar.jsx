@@ -179,7 +179,7 @@ const Sidebar = () => {
             position: fixed; /* sits above content */
             top: 10px;
             left: 10px;
-            padding: 10px 12px;
+            padding: 0px 6px;
             cursor: pointer;
             text-align: center;
             font-size: 1.4rem;
@@ -270,7 +270,7 @@ const Sidebar = () => {
             .sidebar-toggle {
               top: 12px;
               left: 12px;
-              background: #111;
+              background: #000000b1;
               border-radius: 8px;
             }
 

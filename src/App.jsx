@@ -25,7 +25,7 @@ const App = () => {
 
   // Shared button style
   const buttonStyle = {
-    backgroundColor: "#000",
+    backgroundColor: "#000000b1",
     color: "#fff",
     border: "none",
     borderRadius: "12px",
@@ -66,7 +66,7 @@ const App = () => {
           style={buttonStyle}
           {...hoverEffect}
         >
-          ← Back
+          ←
         </button>
       </div>
 
@@ -82,7 +82,7 @@ const App = () => {
         <button
           onClick={() => navigate("/")}
           style={{
-            backgroundColor: "#000",
+            backgroundColor: "#000000b1",
             color: "#fff",
             border: "none",
             borderRadius: "50%",

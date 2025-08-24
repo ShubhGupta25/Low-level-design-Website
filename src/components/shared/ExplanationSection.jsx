@@ -8,8 +8,9 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
     justifyItems: "center",
+    gap: "2rem",
   },
   column: {
     lineHeight: "1.7",

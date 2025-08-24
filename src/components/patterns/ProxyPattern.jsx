@@ -121,15 +121,20 @@ class ImageProxy {
 // --- Styles ---
 const styles = {
   gallery: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "1rem",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: "2rem",
   },
   imageContainer: {
     backgroundColor: "#252525",
     padding: "1rem",
     borderRadius: "12px",
     textAlign: "center",
+    maxWidth: "300px",
+    width: "90vw",
+    height: "280px",
   },
   button: {
     padding: "0.5rem 1rem",
@@ -161,6 +166,7 @@ const ImageWithProxy = ({ imageUrl, id }) => {
         <div
           style={{
             height: "150px",
+            width: "150px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
