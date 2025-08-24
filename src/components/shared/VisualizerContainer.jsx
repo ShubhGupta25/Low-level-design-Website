@@ -8,7 +8,7 @@ const styles = {
     maxWidth: "100%",
     border: "1px solid #333",
     boxSizing: "border-box",
-    marginTop: "5rem",
+    marginTop: "4rem",
   },
 
   header: {
@@ -52,8 +52,7 @@ const styles = {
     container: {
       padding: "2rem 3rem",
       borderRadius: "1.5rem",
-      maxWidth: "1100px",
-      marginLeft: "80px",
+      maxWidth: "95%",
       margin: "3rem 1rem 0rem 4rem",
     },
     title: {
