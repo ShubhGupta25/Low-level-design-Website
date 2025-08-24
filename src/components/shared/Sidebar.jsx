@@ -138,15 +138,15 @@ const Sidebar = () => {
 
         {/* Items */}
         <div className="sidebar-items">
-          {isExpanded && filteredCaseStudies.length > 0 && (
-            <div className="sidebar-group-title">Case Studies</div>
-          )}
-          {renderItems(filteredCaseStudies, "case-studies")}
-
           {isExpanded && filteredPatterns.length > 0 && (
             <div className="sidebar-group-title">Patterns</div>
           )}
           {renderItems(filteredPatterns, "patterns")}
+
+          {isExpanded && filteredCaseStudies.length > 0 && (
+            <div className="sidebar-group-title">Case Studies</div>
+          )}
+          {renderItems(filteredCaseStudies, "case-studies")}
         </div>
       </div>
 
