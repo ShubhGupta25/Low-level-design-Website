@@ -5,6 +5,7 @@ import PatternComponents from "./components/patterns";
 import CaseStudyComponents from "./components/case-studies";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import Sidebar from "./components/shared/Sidebar";
+import CaseStudiesList from "./components/case-studies/CaseStudiesList";
 
 const createRoutes = (componentObject, prefix) =>
   Object.entries(componentObject).map(([name, Component]) => {
@@ -88,12 +89,18 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          key="casestudies"
+          path="/case-studies/all"
+          element={<CaseStudiesList />}
+        />
         {patterns.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
         {caseStudies.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 

@@ -4,6 +4,8 @@ import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import VisualizerContainer from "../../shared/VisualizerContainer";
 import ExplanationSection from "../../shared/ExplanationSection";
 import { NotifyMeButton as data } from "../../shared/database";
+import { caseStudies } from "../caseStudies";
+import CaseStudyCard from "../CaseStudyCard";
 
 const NotifyMeButton = () => (
   <VisualizerContainer
@@ -26,6 +28,7 @@ const NotifyMeButton = () => (
       </SyntaxHighlighter>
     </div>
     <ExplanationSection content={data.explanations} />
+    <CaseStudyCard study={caseStudies.NotifyMeButton} />
   </VisualizerContainer>
 );
 

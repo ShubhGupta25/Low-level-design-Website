@@ -4,6 +4,8 @@ import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import VisualizerContainer from "../../shared/VisualizerContainer";
 import ExplanationSection from "../../shared/ExplanationSection";
 import { FileSystem as data } from "../../shared/database";
+import CaseStudyCard from "../CaseStudyCard";
+import { caseStudies } from "../caseStudies";
 
 const FileSystem = () => (
   <VisualizerContainer
@@ -26,6 +28,8 @@ const FileSystem = () => (
       </SyntaxHighlighter>
     </div>
     <ExplanationSection content={data.explanations} />
+
+    <CaseStudyCard study={caseStudies.FileSystem} />
   </VisualizerContainer>
 );
 

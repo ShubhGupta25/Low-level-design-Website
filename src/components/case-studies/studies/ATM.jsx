@@ -4,6 +4,8 @@ import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import VisualizerContainer from "../../shared/VisualizerContainer";
 import ExplanationSection from "../../shared/ExplanationSection";
 import { Atm as data } from "../../shared/database";
+import CaseStudyCard from "../CaseStudyCard";
+import { caseStudies } from "../caseStudies";
 
 export const ATMSystem = () => (
   <VisualizerContainer
@@ -26,6 +28,7 @@ export const ATMSystem = () => (
       </SyntaxHighlighter>
     </div>
     <ExplanationSection content={data.explanations} />
+    <CaseStudyCard study={caseStudies.ATM} />
   </VisualizerContainer>
 );
 
